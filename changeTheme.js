@@ -20,7 +20,7 @@ buttonElement.addEventListener('click', function () {
 
 function changeTheme(update) {
   var theme = localStorage.getItem("theme");
-	if(theme == null || (theme == "day" && update == "true") || (theme == "night" && update == "false")) {
+	if(theme == null || (theme == "night" && update == "false") || (theme == "day" && update == "true")) {
 		theme = "night";
 		document.body.setAttribute('class', 'night-theme');
 	} else {
