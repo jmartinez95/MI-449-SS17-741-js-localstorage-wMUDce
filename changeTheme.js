@@ -1,4 +1,4 @@
-visits = localStorage.getItem("visits");
+var visits = localStorage.getItem("visits");
 if(visits == null) {
 	visits = 1;
 	localStorage.setItem("visits", visits);
@@ -10,23 +10,24 @@ if(visits == null) {
 
 document.getElementById('visits').innerHTML = visits;
 
-theme = localStorage.getItem("theme");
-if(theme == null || theme == "day") {
-	theme = "day";
-	document.body.setAttribute('class', 'day-theme');
-} else {
-	document.body.setAttribute('class', 'night-theme');
-}
+changeTheme("false")
 
-function changeTheme() {
-    theme = localStorage.getItem("theme");
-	if(theme == null || theme == "day") {
+var buttonElement = document.getElementById('change_theme');
+
+buttonElement.addEventListener('click', function () {
+	changeTheme("true");
+});
+
+function changeTheme(update) {
+  var theme = localStorage.getItem("theme");
+	if(theme == null || (theme == "day" && update == "true") || (theme == "night" && update == "false")) {
 		theme = "night";
 		document.body.setAttribute('class', 'night-theme');
-		localStorage.setItem("theme", theme);
 	} else {
 		theme = "day";
 		document.body.setAttribute('class', 'day-theme');
+	}
+	if(update == "true") {
 		localStorage.setItem("theme", theme);
 	}
 }
